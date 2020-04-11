@@ -39,6 +39,7 @@ public interface CommandDispatcher {
    * @param <T> type of the CommandExecutors
    * @param commandExecutors to unregister from this dispatcher
    */
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   <T extends CommandExecutor> void unregister(T... commandExecutors);
 
   /**

@@ -13,22 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.basil.twentytwenty.command.impl.impl;
+package org.basil.twentytwenty.command.impl;
 
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.basil.twentytwenty.command.impl.Command;
-import org.basil.twentytwenty.command.impl.CommandDispatcher;
-import org.basil.twentytwenty.command.impl.CommandExecutor;
+import org.basil.twentytwenty.command.Command;
+import org.basil.twentytwenty.command.CommandDispatcher;
+import org.basil.twentytwenty.command.CommandExecutor;
 
 import com.google.common.eventbus.AsyncEventBus;
 import com.google.common.eventbus.EventBus;
 
 /**
- * 
- * @author ryan
+ * A very simple implementation of CommandDispatcher using Google Guava's EventBus.
  */
 public class SimpleCommandDispatcher implements CommandDispatcher {
 
@@ -48,9 +47,17 @@ public class SimpleCommandDispatcher implements CommandDispatcher {
   }
 
   @Override
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   public <T extends CommandExecutor> void register(T... commandExecutors) {
     Arrays.stream(commandExecutors)
         .forEach(eventBus::register);
+  }
+
+  @Override
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+  public <T extends CommandExecutor> void unregister(T... commandExecutors) {
+    Arrays.stream(commandExecutors)
+        .forEach(eventBus::unregister);
   }
 
   @Override
