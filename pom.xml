@@ -25,6 +25,7 @@
 
   <modules>
     <module>command</module>
+    <module>domain</module>
   </modules>
 
 
