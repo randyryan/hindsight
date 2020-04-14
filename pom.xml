@@ -26,6 +26,7 @@
   <modules>
     <module>command</module>
     <module>domain</module>
+    <module>event</module>
   </modules>
 
 
